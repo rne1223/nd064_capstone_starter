@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: src-productcatalogservice
+  labels:
+    app: src-productcatalogservice
+spec:
+  clusterIP: None
+  selector:
+    app: src-productcatalogservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: src-productcatalogservice
+  labels:
+    app: src-productcatalogservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: src-productcatalogservice
+  template:
+    metadata:
+      labels:
+        app: src-productcatalogservice
+    spec:
+      containers:
+      - name: src-productcatalogservice
+        image: src-productcatalogservice

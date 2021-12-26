@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: src-adservice-v2
+  labels:
+    app: src-adservice-v2
+spec:
+  clusterIP: None
+  selector:
+    app: src-adservice-v2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: src-adservice-v2
+  labels:
+    app: src-adservice-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: src-adservice-v2
+  template:
+    metadata:
+      labels:
+        app: src-adservice-v2
+    spec:
+      containers:
+      - name: src-adservice-v2
+        image: src-adservice-v2

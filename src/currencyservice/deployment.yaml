@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: src-currencyservice
+  labels:
+    app: src-currencyservice
+spec:
+  clusterIP: None
+  selector:
+    app: src-currencyservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: src-currencyservice
+  labels:
+    app: src-currencyservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: src-currencyservice
+  template:
+    metadata:
+      labels:
+        app: src-currencyservice
+    spec:
+      containers:
+      - name: src-currencyservice
+        image: src-currencyservice
