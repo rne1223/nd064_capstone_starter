@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+  name: grafana-nodeport
+  namespace: monitoring 
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 3000 
+    nodePort: 30030 
+  selector:
+    app.kubernetes.io/name: argocd-server
+  type: NodePort
